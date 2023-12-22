@@ -1,0 +1,47 @@
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.narda_body{
+    width: 500px;
+    height: 600px;
+    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+    flex-direction:column-reverse;
+    flex-direction:column;
+
+
+}
+.teppa{
+    display: flex;width: 100%;
+    background-color: green;
+    height: 30px;
+    justify-content: space-around;
+    border: 1px solid red;
+}
+.circle{
+    width: 30px;
+    height: 30px;
+    background-color: palevioletred;
+    border-radius: 50%;
+}
+.dragtarget{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.circle .img img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.circle .img{
+    height: 15px;
+    background-color: aqua;
+}
+.df .circle{
+   transform: rotate(180deg);
+}
