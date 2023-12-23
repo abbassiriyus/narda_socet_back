@@ -32,6 +32,10 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    margin-top: -100px;
+}
+.dragtarget:nth-child(1){
+    margin-top: 0px !important;
 }
 .circle .img img{
     width: 30px;
@@ -39,7 +43,7 @@
     border-radius: 50%;
 }
 .circle .img{
-    height: 15px;
+    height: 18px;
     background-color: aqua;
 }
 .df .circle{

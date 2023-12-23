@@ -408,24 +408,22 @@ var image
 for (let i = 0; i < position.length; i++) {
 //   positiom(position[i].position,position[i].name)
 if(position[i].name=="oq"){
- image="https://media.licdn.com/dms/image/D5622AQGaUWuO9DosMA/feedshare-shrink_2048_1536/0/1681815184413?e=2147483647&v=beta&t=OXwDfLjO52tJOYWYpn7CGJtd9UBwSZuUg6JsLsjeekA"
+ image="./img/Дизайн_без_названия__1_-removebg-preview.png"
 }else{
-image="https://www.usainteanne.ca/cache/images/Georges_M._Liboy_2017_v2_e182e.jpg"
+image="./img/Дизайн_без_названия-removebg-preview.png"
 }
 
-if(position[i].position<12){
-   console.log(12-position[i].position,image); 
-document.querySelectorAll('.circle')[12-position[i].position].innerHTML+=`<div ondrop="drop(event)" ondragover="allowDrop(event)" class="img">
-<img draggable="false" ondragstart="dragStart(event,${i})" src='${image}' class="dragtarget" id='d${i}' alt="uytgguhgh">
-</div>`
+if(position[i].position<12){; 
+document.querySelectorAll('.circle')[12-position[i].position].innerHTML+=`
+<img draggable="true" ondragstart="dragStart(event,${i})" src='${image}' class="dragtarget" id='d${i}' alt="">
+`
 }else{
-document.querySelectorAll('.circle')[position[i].position-1].innerHTML+=`<div ondrop="drop(event)" ondragover="allowDrop(event)" class="img">
-<img draggable="false" ondragstart="dragStart(event,${i})" src='${image}' class="dragtarget" id='d${i}' alt="hjhjhjhj">
-</div>`
+document.querySelectorAll('.circle')[position[i].position-1].innerHTML+=`
+<img draggable="true" ondragstart="dragStart(event,${i})" src='${image}' class="dragtarget" id='d${i}' alt="">`
 }}
 
   function dragStart(event) {
-    event.dataTransfer.setData("Text", event.target.src);
+    event.dataTransfer.setData("Text",event.target.id);
   }
   
   
@@ -433,14 +431,10 @@ document.querySelectorAll('.circle')[position[i].position-1].innerHTML+=`<div on
     event.preventDefault();
   }
   
-  function drop(event) {
+  function drop(event, key) {
     event.preventDefault();
     const data = event.dataTransfer.getData("Text");
-    // var newChild = document.createElement("div");
-    var new_image = document.createElement('img')
-    new_image.style="width:30px"
-    new_image.draggable='false'
-    new_image.src = data
-    // newChild.appendChild(new_image)
-    event.target.appendChild(new_image);
+    if(key!=12 && key!=11){
+            document.querySelectorAll(".circle")[key].appendChild(document.getElementById(data));
+    }
   }
