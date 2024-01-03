@@ -35,7 +35,7 @@ var toshlar = [{
     name: 'oq'
 }, {
     id: 9,
-    position: 18,
+    position: 19,
     name: 'oq'
 },
 {
@@ -70,7 +70,7 @@ var toshlar = [{
 },
 {
     id: 2,
-    position: 13,
+    position: 6,
     name: 'qora'
 }, {
     id: 3,
@@ -98,7 +98,7 @@ var toshlar = [{
     name: 'qora'
 }, {
     id: 9,
-    position: 17,
+    position: 16,
     name: 'qora'
 },
 {
@@ -415,15 +415,16 @@ for (let i = 0; i < toshlar.length; i++) {
 
     if (toshlar[i].position <= 12) {
         document.querySelectorAll('.circle')[12 - toshlar[i].position].innerHTML += `
-<img draggable="true" onmouseenter="yur1(${toshlar[i].position},'oq')" ondragstart="dragStart(event,${i})" src='${image}' class="dragtarget" id='d${i}' alt="">
+<img draggable="true" onclick="YurClick(event,'oq',${toshlar[i].position})" onmouseenter="yur1(${toshlar[i].position},'oq')" ondragstart="dragStart(event,${i})" src='${image}' class="dragtarget" id='d${i}' alt="">
 `
     } else {
         document.querySelectorAll('.circle')[toshlar[i].position - 1].innerHTML += `
-<img draggable="true" onmouseenter="yur1(${toshlar[i].position},'qora')" ondragstart="dragStart(event,${i})" src='${image}' class="dragtarget" id='d${i}' alt="">`
+<img draggable="true" onclick="YurClick(event,'qora',${toshlar[i].position})" onmouseenter="yur1(${toshlar[i].position},'qora')" ondragstart="dragStart(event,${i})" src='${image}' class="dragtarget" id='d${i}' alt="">`
     }
 }
 
 function dragStart(event) {
+    console.log(event,"helo");
     event.dataTransfer.setData("Text", event.target.id);
 }
 
@@ -434,6 +435,7 @@ function allowDrop(event) {
 function drop(event, key) {
     event.preventDefault();
     const data = event.dataTransfer.getData("Text");
+
     if (key != 12 && key != 11) {
         document.querySelectorAll(".circle")[key].appendChild(document.getElementById(data));
     }
@@ -473,9 +475,9 @@ function yur(positiom,tosh,tush2) {
     
             } else {
                 if (tush2[i] + positiom > 23) {
-                    document.querySelectorAll(".circle")[12 - (tush2[i] + positiom - 23)].style = "background:red;"
+                    document.querySelectorAll(".circle")[12 - (tush2[i] + positiom - 24)].style = "background:red;"
                     if (tush2.length == i + 1) {
-                        document.querySelectorAll(".circle")[12 - (tush2[i] + positiom - 23)].style = "background:yellow;"
+                        document.querySelectorAll(".circle")[12 - (tush2[i] + positiom - 24)].style = "background:yellow;"
                     }
                 } else {
                     document.querySelectorAll(".circle")[tush2[i] + positiom - 1].style = "background:red;"
@@ -490,16 +492,44 @@ function yur(positiom,tosh,tush2) {
 }
 
 function yur1(position,tosh) {
-  
+    var tushtosh=tush22
+    if(tosh=="oq"){
     for (let i = 0; i < toshlar.length; i++) {
-        for (let j = 0; j < tush22.length; j++) {
-           if(tush22[j]==(12 - (tush22[j] + toshlar[i].position))){
-            
-           }
+        for (let j = 0; j < tushtosh.length; j++) {
+            if(tushtosh[j]==toshlar[i].position-1){
+                console.log(toshlar[i].name,"helloZor");
+                  if(toshlar[i].name!="oq"){
+                    tushtosh.splice(j,1)
+                  }
+            }
         }
-    }
+    } 
     
-      yur(position,tosh,tush22)
+    }else{
+        for (let i = 0; i < toshlar.length; i++) {
+            for (let j = 0; j < tushtosh.length; j++) {
+                if(tushtosh[j]==toshlar[i].position-1){
+                      if(toshlar[i].name!="qora"){
+                          tushtosh.splice(j,1)
+                      }
+                }
+            }
+        } 
+    }
+    var a=tushtosh   
+    console.log(tushtosh,"hello");
+    yur(position,tosh,a)
+}
+
+
+function YurClick(event,tosh,positiom){
+    if(tosh=='oq'){
+        var a=tush22[tush22.length-1]
+        document.querySelectorAll(".circle")[a].appendChild(document.getElementById(event.target.id)) 
+    }else{
+        var a=12 - (tush22[tush22.length-1] + positiom - 24)
+        document.querySelectorAll(".circle")[a].appendChild(document.getElementById(event.target.id)) 
+    }
 }
 
 
